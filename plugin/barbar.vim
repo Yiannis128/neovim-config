@@ -20,4 +20,6 @@ let bufferline.auto_hide = v:true
 
 let bufferline.icon_pinned = '📍'
 
+" Sets the maximum padding width with which to surround each tab.
+let bufferline.maximum_padding = 4
 
