@@ -5,3 +5,4 @@ Private neovim conf
 
 Follow Plug instructions to get it setup.
 
+Run `:PlugInstall` to install all the plugins.
