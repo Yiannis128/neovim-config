@@ -72,3 +72,16 @@ map <Leader>re <C-w>t<C-w>K
 " Plugin Mappings
 map <Leader>nt :NERDTree<CR>
 
+" ==== User Defined Commands
+command Wrap :%!fmt -80 -s
+
+" ==== User Defined Functions
+
+function! Wrap() abort
+   " Save the position of the cursor because normal resets it.
+   let save_pos = getpos(".")
+   normal! "{j"
+   call setpos('.', save_pos)
+   Wrap
+   echo "Wrapped paragraph"
+endfunction
