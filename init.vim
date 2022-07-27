@@ -74,16 +74,38 @@ map <Leader>nt :NERDTree<CR>
 
 " ==== User Defined Functions
 
+" Wraps a line to be less than 80 columns.
 function! Wrap() abort
    " Save the position of the cursor because normal resets it.
    let save_pos = getpos(".")
-   normal! "{j"
+   normal! {j
+   " Wrap the text
    :%!fmt -80 -s
    call setpos('.', save_pos)
    echo "Wrapped paragraph"
 endfunction
 
+" Joins lines that are in a paragraph to form one line.
+function! JoinLines() abort
+   let save_pos = getpos(".")
+   " Whaat this does is it goes to the top of the paragraph, then goes down
+   " one line to enter the paragraph. Then it enters visual mode, selects the
+   " paragraph by going to the end of it and also one line up (so we don't
+   " select the line underneath as well, then it goes to the end of the line.
+   " Finally it causes all the lines to be made into 1.
+   normal! {jv}k$J
+endfunction
+
+" Joins lines together then wraps them effectively implementing the Rewrap
+" function of VSCode in vim.
+function! Rewrap() abort
+   call JoinLines()
+   call Wrap()
+endfunction
+
 " ==== User Defined Commands
 command Wrap call Wrap()
+command Rewrap call Rewrap()
+command ReloadConfig source $MYVIMRC
 
 
