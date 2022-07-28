@@ -39,6 +39,11 @@ set mouse+=a
 " for all file-related tasks.
 set path+=**
 
+" https://ejmastnak.github.io/tutorials/vim-latex/ftplugin.html 
+filetype on             " enable filetype detection
+filetype plugin on      " load file-specific plugins
+filetype indent on      " load file-specific indentation
+
 " ==== Mappings
 " Remap block select to Alt-v
 noremap <A-v> <C-v>
@@ -74,17 +79,6 @@ map <Leader>nt :NERDTree<CR>
 
 " ==== User Defined Functions
 
-" Wraps a line to be less than 80 columns.
-function! Wrap() abort
-   " Save the position of the cursor because normal resets it.
-   let save_pos = getpos(".")
-   normal! {j
-   " Wrap the text
-   :%!fmt -80 -s
-   call setpos('.', save_pos)
-   echo "Wrapped paragraph"
-endfunction
-
 " Joins lines that are in a paragraph to form one line.
 function! JoinLines() abort
    let save_pos = getpos(".")
@@ -98,14 +92,25 @@ endfunction
 
 " Joins lines together then wraps them effectively implementing the Rewrap
 " function of VSCode in vim.
-function! Rewrap() abort
+function! Wrap() abort
    call JoinLines()
-   call Wrap()
+   " Now perform the wrap
+   " Do :help gq to see that it formats the text using textwidth
+   normal! {jv}k$gq
+endfunction
+
+" Wraps a line to be less than 80 columns.
+function! WrapFile() abort
+   " Save the position of the cursor because normal resets it.
+   let save_pos = getpos(".")
+   " Wrap the text
+   :%!fmt -80 -s
+   call setpos('.', save_pos)
+   echo "Wrapped paragraph"
 endfunction
 
 " ==== User Defined Commands
 command Wrap call Wrap()
-command Rewrap call Rewrap()
 command ReloadConfig source $MYVIMRC
 
 
