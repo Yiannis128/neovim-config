@@ -1,6 +1,14 @@
 " Load vim-plug
 source $HOME/.config/nvim/vim-plug/plugins.vim
 
+" Load the theme
+source $HOME/.config/nvim/themes/normal.vim
+
+" Need to ensure that mason starts before mason-lspconfig and that
+" lspconfig starts last, so force the first two to start first.
+lua require("mason").setup()
+lua require("mason-lspconfig").setup()
+
 syntax on
 
 " Enable tab spaces
@@ -10,6 +18,9 @@ set shiftwidth=2
 set expandtab
 
 set autoindent
+
+" Enable autocomplete menu features
+set completeopt=menu,menuone,noselect
 
 " Enable line numbers
 set number
@@ -74,8 +85,10 @@ map <Leader>tt :term<CR>
 map <Leader>rr <C-w>t<C-w>H
 map <Leader>re <C-w>t<C-w>K
 
-" Plugin Mappings
+" ==== Plugin Mappings
+
 map <Leader>nt :NERDTree<CR>
+
 
 " ==== User Defined Functions
 
