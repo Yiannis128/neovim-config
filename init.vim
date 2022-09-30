@@ -56,12 +56,16 @@ filetype plugin on      " load file-specific plugins
 filetype indent on      " load file-specific indentation
 
 " ==== Mappings
+
 " Remap block select to Alt-v
 noremap <A-v> <C-v>
 
 " Copy/Pasting
 noremap <C-c> "+y
 noremap <C-v> "+P
+
+" Saving
+noremap <C-s> <Cmd>w<CR>
 
 " Remap switching splits to make them simpler.
 " Instead of C+w C+x to switch, now C+w x
