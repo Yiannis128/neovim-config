@@ -27,7 +27,8 @@ Plug 'hrsh7th/nvim-cmp'
 " Snippets for autocomplete
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
-
+Plug 'hrsh7th/vim-vsnip-integ' 
+"
 " This is the color highlighter that appears over colors 
 " #000000 #FFFFFF #FF0000 #00FF00 #0000FF
 Plug 'norcalli/nvim-colorizer.lua'
@@ -37,6 +38,8 @@ Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
 
+" Minimap
+Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 
 call plug#end()
 
