@@ -137,7 +137,9 @@ require('lspconfig')['vimls'].setup {
   capabilities = capabilities,
 }
 
-
+require'lspconfig'.gopls.setup{
+  capabilities = capabilities,
+}
 
 
 
